@@ -1,5 +1,6 @@
 # 🕹️ MiSTerFPGA — Scripts by Fred Oliveira
 Scripts utilitários para gerenciamento do MiSTer FPGA usando apenas o Gamepad "Controle"
+
 A intenção de criar estes scripts, é para facilitar o meu uso com a minha Mister FPGA
 Inclui ferramentas para configuração rápida de vsync_adjust e um script seguro de desligamento com contagem regressiva.
 
@@ -14,22 +15,19 @@ Script: vsync_check.sh -> Exibe o valor atual de vsync_adjust
 # Parte 1 — Scripts de VSync Adjust
 O parâmetro controla como o MiSTer FPGA sincroniza o sinal de vídeo com a tela.
 
-Valores:
+- Valores:
 - Sem ajuste de VSync = 0
 - Ajuste parcial = 1
 - Ajuste completo (recomendado) = 2
 
-Instalação:
+-Instalação:
 Copiar scripts para /media/fat/Scripts
 
-Uso:
-./vsync_check.sh
-
-./vsync0.sh
-
-./vsync1.sh
-
-./vsync2.sh
+-Uso:
+- ./vsync_check.sh
+- ./vsync0.sh
+- ./vsync1.sh
+- ./vsync2.sh
 
 Backup automático em /media/fat/iniBkp
 
@@ -38,18 +36,15 @@ Script de desligamento seguro com contagem regressiva.
 
 Instalação:
 
-Copiar para /media/fat/Scripts
+- Copiar para /media/fat/Scripts
+- Uso:
+- poweroff_countdown_sh [SEGUNDOS]
 
-Uso:
-
-poweroff_countdown_sh [SEGUNDOS]
-
-Funciona realizando:
+#Funciona realizando:
 1. Contagem regressiva
 2. sync
 3. Mensagem final
 4. Desligamento
 
-Licença MIT
-
-Autor: Fred Oliveira
+- Licença MIT
+- Autor: Fred Oliveira
