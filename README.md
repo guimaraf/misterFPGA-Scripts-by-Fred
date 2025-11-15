@@ -20,10 +20,10 @@ O parâmetro controla como o MiSTer FPGA sincroniza o sinal de vídeo com a tela
 - Ajuste parcial = 1
 - Ajuste completo (recomendado) = 2
 
--Instalação:
+## Instalação:
 Copiar scripts para /media/fat/Scripts
 
--Uso:
+## Uso:
 - ./vsync_check.sh
 - ./vsync0.sh
 - ./vsync1.sh
@@ -34,13 +34,13 @@ Backup automático em /media/fat/iniBkp
 # Parte 2 — poweroff_countdown_sh
 Script de desligamento seguro com contagem regressiva.
 
-- Instalação:
+## Instalação:
 
 - Copiar para /media/fat/Scripts
 - Uso:
 - poweroff_countdown_sh [SEGUNDOS]
 
-- Funciona realizando:
+## Funciona realizando:
 1. Contagem regressiva
 2. sync
 3. Mensagem final
