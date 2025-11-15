@@ -34,13 +34,13 @@ Backup automático em /media/fat/iniBkp
 # Parte 2 — poweroff_countdown_sh
 Script de desligamento seguro com contagem regressiva.
 
-Instalação:
+- Instalação:
 
 - Copiar para /media/fat/Scripts
 - Uso:
 - poweroff_countdown_sh [SEGUNDOS]
 
-#Funciona realizando:
+- Funciona realizando:
 1. Contagem regressiva
 2. sync
 3. Mensagem final
