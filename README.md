@@ -1,7 +1,7 @@
 # 🕹️ MiSTerFPGA — Scripts by Fred Oliveira
 Scripts utilitários para gerenciamento do MiSTer FPGA usando apenas o Gamepad "Controle"
 
-A intenção de criar estes scripts, é para facilitar o meu uso com a minha Mister FPGA
+A intenção de criar estes scripts, é para facilitar o meu uso com a minha Mister FPGA.
 Inclui ferramentas para configuração rápida de vsync_adjust e um script seguro de desligamento com contagem regressiva.
 
 ## 📦 Conteúdo do Repositório
@@ -29,7 +29,7 @@ Copiar scripts para /media/fat/Scripts
 - ./vsync1.sh
 - ./vsync2.sh
 
-Backup automático em /media/fat/iniBkp
+Backup automático em /media/fat/iniBkp de apenas 1 arquivo.
 
 # Parte 2 — poweroff_countdown_sh
 Script de desligamento seguro com contagem regressiva.
