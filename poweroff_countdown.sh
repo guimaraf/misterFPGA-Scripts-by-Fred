@@ -19,7 +19,12 @@
 # =============================================================================
 
 SEC="${1:-10}"
-case "$SEC" in ''|*[!0-9]*) echo "Uso: $0 [segundos]"; exit 1;; esac
+case "$SEC" in ''|*[!0-9]*)
+    echo "Usage: $0 [seconds]"
+    echo "Uso: $0 [segundos]"
+    exit 1
+    ;;
+esac
 
 CANCEL_FLAG="/tmp/_poweroff_cancel_$$"
 JS_DEV="/dev/input/js0"
@@ -95,9 +100,14 @@ i="$SEC"
 while [ "$i" -gt 0 ]; do
     clear
     printf "\n\n"
+    printf "  POWERING OFF MiSTer\n"
     printf "  DESLIGANDO O MiSTer\n"
     printf "\n"
+    printf "  In %2d second(s)...\n" "$i"
     printf "  Em %2d segundo(s)...\n" "$i"
+    printf "\n"
+    printf "  Press any controller button\n"
+    printf "  to CANCEL\n"
     printf "\n"
     printf "  Aperte qualquer botao\n"
     printf "  do controle para CANCELAR\n"
@@ -120,8 +130,10 @@ done
 if [ -f "$CANCEL_FLAG" ]; then
     clear
     printf "\n\n"
+    printf "  CANCELED!\n"
     printf "  CANCELADO!\n"
     printf "\n"
+    printf "  Returning to menu...\n"
     printf "  Voltando ao menu...\n"
     sleep 2
     # Remove os traps para evitar dupla limpeza, faz cleanup manual e
@@ -138,10 +150,12 @@ fi
 # -----------------------------------------------------------------------------
 clear
 printf "\n\n"
+printf "  Syncing data...\n"
 printf "  Sincronizando dados...\n"
 sync
 
 printf "\n"
+printf "  Safe to power off.\n"
 printf "  Seguro para desligar.\n"
 sleep 2
 

@@ -5,10 +5,13 @@ BACKUP="$BKP_DIR/backupMister.ini"
 
 mkdir -p "$BKP_DIR"
 
+echo "Backing up MiSTer.ini to $BACKUP"
 echo "Backupando MiSTer.ini para $BACKUP"
 cp "$INI" "$BACKUP"
 
+echo "Setting vsync_adjust=2"
 echo "Definindo vsync_adjust=2"
 sed -i "s/^vsync_adjust=[0-2]/vsync_adjust=2/" "$INI"
 
+echo "Done. Reboot the system to activate the new value."
 echo "Pronto. Reinicie o sistema para ativar o novo valor."

@@ -1,132 +1,55 @@
 # MiSTerFPGA Scripts by Fred Oliveira
 
-Scripts utilitarios para uso no MiSTer FPGA, com foco em duas tarefas do dia a dia:
+## English
 
-- ajustar rapidamente o parametro `vsync_adjust` no `MiSTer.ini`
-- desligar o sistema com seguranca usando contagem regressiva e cancelamento por controle
-
-O objetivo deste repositorio e concentrar scripts simples, diretos e praticos para facilitar o uso do MiSTer sem precisar editar arquivos manualmente toda vez.
-
-## Visao Geral
-
-Este repositorio contem 5 scripts:
-
-| Script | Funcao |
-| --- | --- |
-| `vsync_check.sh` | Mostra o valor atual de `vsync_adjust` |
-| `vsync0.sh` | Define `vsync_adjust=0` |
-| `vsync1.sh` | Define `vsync_adjust=1` |
-| `vsync2.sh` | Define `vsync_adjust=2` |
-| `poweroff_countdown.sh` | Faz desligamento seguro com contagem regressiva |
-
-## Estrutura dos Scripts
-
-### 1. Scripts de VSync
-
-Os scripts `vsync0.sh`, `vsync1.sh` e `vsync2.sh` alteram diretamente o arquivo:
-
-```bash
-/media/fat/MiSTer.ini
-```
-
-Antes de alterar o valor, cada script cria um backup em:
-
-```bash
-/media/fat/iniBkp/backupMister.ini
-```
-
-Depois disso, o script substitui o valor atual de `vsync_adjust` e informa que o sistema deve ser reiniciado para aplicar a mudanca.
-
-#### Valores disponiveis
-
-- `0`: sem ajuste de VSync
-- `1`: ajuste intermediario
-- `2`: ajuste completo
-
-#### Scripts disponiveis
-
-```bash
-./vsync_check.sh
-./vsync0.sh
-./vsync1.sh
-./vsync2.sh
-```
-
-#### Observacoes importantes
-
-- Os scripts assumem que o arquivo `/media/fat/MiSTer.ini` existe.
-- Os scripts de escrita assumem que ja existe uma linha `vsync_adjust=` no `MiSTer.ini`.
-- O backup e sobrescrito no mesmo caminho a cada execucao.
-- O `vsync_check.sh` exibe o valor no terminal e, se existir, tambem usa `OSDutils` em `/media/fat/Scripts/OSDutils`.
-
-### 2. Script de Desligamento Seguro
-
-O script `poweroff_countdown.sh` realiza um desligamento seguro do MiSTer com contagem regressiva visivel na tela.
-
-Uso:
-
-```bash
-./poweroff_countdown.sh [SEGUNDOS]
-```
-
-Se nenhum valor for informado, o padrao e `10` segundos.
-
-#### O que o script faz
-
-1. Inicia uma contagem regressiva no terminal.
-2. Exibe mensagens em fonte grande para facilitar a leitura.
-3. Permite cancelar o desligamento ao apertar qualquer botao do controle.
-4. Executa `sync` antes do desligamento.
-5. Chama `poweroff`, `shutdown -h now` ou `busybox poweroff`, dependendo do que estiver disponivel.
-
-#### Detalhes de funcionamento
-
-- O monitoramento do controle usa `/dev/input/js0`.
-- O cancelamento tambem pode acontecer por entrada lida no terminal.
-- O script tenta restaurar o estado original do terminal ao encerrar.
-- A fonte grande usada e `solar24x32.psfu.gz`, quando disponivel no sistema.
-
-## Instalacao
-
-Copie os scripts para:
+Small utility scripts for MiSTer FPGA. Copy the scripts you want to use to:
 
 ```bash
 /media/fat/Scripts
 ```
 
-Depois, execute pelo menu de scripts do MiSTer ou pelo terminal, conforme sua rotina.
+Then run them from the MiSTer Scripts menu or from the terminal.
 
-## Exemplo de Uso
+| Script | Purpose |
+| --- | --- |
+| `vsync_check.sh` | Shows the current `vsync_adjust` value from `/media/fat/MiSTer.ini`. |
+| `vsync0.sh` | Sets `vsync_adjust=0` in `/media/fat/MiSTer.ini` and creates a backup first. |
+| `vsync1.sh` | Sets `vsync_adjust=1` in `/media/fat/MiSTer.ini` and creates a backup first. |
+| `vsync2.sh` | Sets `vsync_adjust=2` in `/media/fat/MiSTer.ini` and creates a backup first. |
+| `poweroff_countdown.sh` | Powers off MiSTer safely after a countdown. Any controller button cancels it. |
+| `copyMainOriginal.sh` | Copies `/media/fat/!mainBKP/Original/MiSTer` to `/media/fat/MiSTer`, then forces a reboot. |
+| `copyMainRetroArch.sh` | Copies `/media/fat/!mainBKP/RetroArchiviements/MiSTer` to `/media/fat/MiSTer`, then forces a reboot. |
+| `restore_update_senhor.sh` | Downloads a fresh `update_senhor.sh` from GitHub and replaces `/media/fat/Scripts/update_senhor.sh`. |
+| `update_senhor_Fix.sh` | Patches the local `update_senhor.sh` internet check function and creates a backup. |
+| `checkInternetCorrect.sh` | Reference backup of the corrected `check_internet()` function. Not meant to be run directly. |
 
-Verificar o valor atual:
+`update_senhor.sh` is intentionally not documented here because it is not meant to be published in this repository.
+
+## Portugues do Brasil
+
+Scripts utilitarios pequenos para MiSTer FPGA. Copie os scripts que quiser usar para:
 
 ```bash
-./vsync_check.sh
+/media/fat/Scripts
 ```
 
-Definir `vsync_adjust=2`:
+Depois execute pelo menu de Scripts do MiSTer ou pelo terminal.
 
-```bash
-./vsync2.sh
-```
+| Script | Funcao |
+| --- | --- |
+| `vsync_check.sh` | Mostra o valor atual de `vsync_adjust` em `/media/fat/MiSTer.ini`. |
+| `vsync0.sh` | Define `vsync_adjust=0` em `/media/fat/MiSTer.ini` e cria um backup antes. |
+| `vsync1.sh` | Define `vsync_adjust=1` em `/media/fat/MiSTer.ini` e cria um backup antes. |
+| `vsync2.sh` | Define `vsync_adjust=2` em `/media/fat/MiSTer.ini` e cria um backup antes. |
+| `poweroff_countdown.sh` | Desliga o MiSTer com seguranca apos uma contagem regressiva. Qualquer botao do controle cancela. |
+| `copyMainOriginal.sh` | Copia `/media/fat/!mainBKP/Original/MiSTer` para `/media/fat/MiSTer` e depois forca o reboot. |
+| `copyMainRetroArch.sh` | Copia `/media/fat/!mainBKP/RetroArchiviements/MiSTer` para `/media/fat/MiSTer` e depois forca o reboot. |
+| `restore_update_senhor.sh` | Baixa um `update_senhor.sh` novo do GitHub e substitui `/media/fat/Scripts/update_senhor.sh`. |
+| `update_senhor_Fix.sh` | Corrige a funcao de verificacao de internet do `update_senhor.sh` local e cria um backup. |
+| `checkInternetCorrect.sh` | Backup de referencia da funcao `check_internet()` corrigida. Nao foi feito para executar diretamente. |
 
-Desligar com 15 segundos de contagem:
+O `update_senhor.sh` foi ignorado de proposito nesta documentacao porque nao sera publicado neste repositorio.
 
-```bash
-./poweroff_countdown.sh 15
-```
-
-## Resumo Rapido
-
-- configuracao rapida de `vsync_adjust`
-- backup automatico do `MiSTer.ini` antes de alterar o VSync
-- leitura do valor atual com `vsync_check.sh`
-- desligamento seguro com cancelamento por controle
-
-## Autor
-
-Fred Oliveira
-
-## Licenca
+## License
 
 MIT

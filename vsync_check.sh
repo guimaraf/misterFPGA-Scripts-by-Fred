@@ -3,26 +3,28 @@
 INI="/media/fat/MiSTer.ini"
 
 if [ ! -f "$INI" ]; then
-  echo "Arquivo $INI não encontrado!"
+  echo "File $INI not found!"
+  echo "Arquivo $INI nao encontrado!"
   exit 1
 fi
 
-# lê a linha vsync_adjust
+# Read the vsync_adjust line.
 VALOR=$(grep -E '^vsync_adjust=' "$INI" | sed 's/.*=//')
 
 if [[ -z "$VALOR" ]]; then
-  echo "vsync_adjust não está definido no arquivo .ini"
+  echo "vsync_adjust is not defined in the .ini file"
+  echo "vsync_adjust nao esta definido no arquivo .ini"
   exit 1
 fi
 
-# Mostra o valor com destaque usando OSDutils (se instalado) ou echo simples
+# Show the value using OSDutils if available, or plain echo otherwise.
 echo "=============================="
-echo "      vsync_adjust = $VALOR      "
+echo "      vsync_adjust = $VALOR"
+echo "      Current value / Valor atual"
 echo "=============================="
 
-# Se quiser usar OSD — depende se o utilitário está disponível
 if [ -x /media/fat/Scripts/OSDutils ]; then
-  /media/fat/Scripts/OSDutils "vsync_adjust = $VALOR" 5  # ex: 5 segundos
+  /media/fat/Scripts/OSDutils "vsync_adjust = $VALOR | Current value / Valor atual" 5
 fi
 
 exit 0
