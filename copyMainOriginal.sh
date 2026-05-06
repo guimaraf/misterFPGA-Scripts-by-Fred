@@ -2,6 +2,31 @@
 
 SOURCE="/media/fat/!mainBKP/Original/MiSTer"
 DEST="/media/fat/MiSTer"
+TEMP_DEST="/media/fat/MiSTer.tmp.$$"
+MAX_ORIGINAL_BYTES=1100000
+
+cleanup() {
+    [ -f "$TEMP_DEST" ] && rm -f "$TEMP_DEST"
+}
+
+trap cleanup EXIT INT TERM
+
+get_file_size() {
+    if command -v stat >/dev/null 2>&1; then
+        stat -c %s "$1" 2>/dev/null
+    else
+        wc -c < "$1" 2>/dev/null
+    fi
+}
+
+validate_original_size() {
+    size=$(get_file_size "$1")
+    case "$size" in
+        ''|*[!0-9]*) return 1 ;;
+    esac
+
+    [ "$size" -lt "$MAX_ORIGINAL_BYTES" ]
+}
 
 force_reboot() {
     sync
@@ -44,6 +69,7 @@ printf "  Troca do arquivo MiSTer\n"
 printf "\n"
 printf "  Source / Origem      : %s\n" "$SOURCE"
 printf "  Destination / Destino: %s\n" "$DEST"
+printf "  Temporary / Temporario : %s\n" "$TEMP_DEST"
 printf "\n"
 
 if [ ! -f "$SOURCE" ]; then
@@ -73,7 +99,7 @@ printf "  Copying original file...\n"
 printf "  Copiando arquivo original...\n"
 printf "\n"
 
-if cp -f "$SOURCE" "$DEST"; then
+if cp -f "$SOURCE" "$TEMP_DEST" && sync && validate_original_size "$TEMP_DEST" && mv -f "$TEMP_DEST" "$DEST"; then
     force_reboot
 fi
 
@@ -84,5 +110,8 @@ printf "  ERRO: nao foi possivel copiar o arquivo.\n"
 printf "\n"
 printf "  Source / Origem      : %s\n" "$SOURCE"
 printf "  Destination / Destino: %s\n" "$DEST"
+printf "\n"
+printf "  The original file must be smaller than 1.1 MB.\n"
+printf "  O arquivo original precisa ser menor que 1.1 MB.\n"
 sleep 5
 exit 1
