@@ -15,6 +15,10 @@ _book
 *.mobi
 *.pdf
 
+!temp/
+
+checkInternetCorrect.sh
+
 # original scripts
 update_senhor.sh
 rtc.sh

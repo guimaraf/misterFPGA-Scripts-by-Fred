@@ -23,7 +23,6 @@ Then run them from the MiSTer Scripts menu or from the terminal.
 | `misterMainCheck.sh` | Checks `/media/fat/MiSTer` size and shows whether the original or achievements file is installed. |
 | `restore_update_senhor.sh` | Downloads a fresh `update_senhor.sh` from GitHub and replaces `/media/fat/Scripts/update_senhor.sh`. |
 | `update_senhor_Fix.sh` | Patches the local `update_senhor.sh` internet check function and creates a backup. |
-| `checkInternetCorrect.sh` | Reference backup of the corrected `check_internet()` function. Not meant to be run directly. |
 
 ## Portugues do Brasil
 
@@ -48,7 +47,6 @@ Depois execute pelo menu de Scripts do MiSTer ou pelo terminal.
 | `misterMainCheck.sh` | Verifica o tamanho de `/media/fat/MiSTer` e mostra se esta instalado o arquivo original ou o de conquistas. |
 | `restore_update_senhor.sh` | Baixa um `update_senhor.sh` novo do GitHub e substitui `/media/fat/Scripts/update_senhor.sh`. |
 | `update_senhor_Fix.sh` | Corrige a funcao de verificacao de internet do `update_senhor.sh` local e cria um backup. |
-| `checkInternetCorrect.sh` | Backup de referencia da funcao `check_internet()` corrigida. Nao foi feito para executar diretamente. |
 
 ## License
 
